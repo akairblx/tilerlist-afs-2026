@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anime Fighting Simulator - Fruits Tier List (2026)</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            min-height: 100vh;
+            color: #e0e0e0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        header {
+            text-align: center;
+            padding: 40px 20px;
+            background: rgba(0,0,0,0.3);
+            border-radius: 20px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        header h1 {
+            font-size: 2.5em;
+            background: linear-gradient(90deg, #ff6b6b, #feca57, #48dbfb, #ff9ff3);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+        }
+        header .subtitle {
+            color: #aaa;
+            font-size: 1.1em;
+        }
+        header .last-updated {
+            color: #888;
+            font-size: 0.9em;
+            margin-top: 10px;
+        }
+
+        .tier-section {
+            margin-bottom: 25px;
+            border-radius: 15px;
+            overflow: hidden;
+            border: 2px solid;
+            background: rgba(0,0,0,0.4);
+        }
+        .tier-header {
+            padding: 15px 25px;
+            font-size: 1.8em;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .tier-header .tier-badge {
+            width: 50px;
+            height: 50px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5em;
+            font-weight: 900;
+            color: #fff;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .tier-s { border-color: #ffd700; }
+        .tier-s .tier-header { background: linear-gradient(90deg, #ffd700, #ffaa00); color: #1a1a2e; }
+        .tier-s .tier-badge { background: #ffd700; color: #1a1a2e; }
+
+        .tier-a { border-color: #4ecdc4; }
+        .tier-a .tier-header { background: linear-gradient(90deg, #4ecdc4, #44a08d); color: #fff; }
+        .tier-a .tier-badge { background: #4ecdc4; color: #1a1a2e; }
+
+        .tier-b { border-color: #95e1d3; }
+        .tier-b .tier-header { background: linear-gradient(90deg, #95e1d3, #6ab04c); color: #1a1a2e; }
+        .tier-b .tier-badge { background: #95e1d3; color: #1a1a2e; }
+
+        .tier-c { border-color: #f38181; }
+        .tier-c .tier-header { background: linear-gradient(90deg, #f38181, #e66767); color: #fff; }
+        .tier-c .tier-badge { background: #f38181; color: #fff; }
+
+        .tier-content {
+            padding: 20px;
+        }
+
+        .fruit-card {
+            background: rgba(255,255,255,0.05);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-left: 4px solid;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .fruit-card:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+        }
+        .fruit-card:last-child {
+            margin-bottom: 0;
+        }
+        .fruit-name {
+            font-size: 1.4em;
+            font-weight: bold;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .fruit-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2em;
+        }
+        .fruit-stats {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 10px;
+            flex-wrap: wrap;
+        }
+        .stat-badge {
+            background: rgba(255,255,255,0.1);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            color: #ccc;
+        }
+        .stat-badge .label {
+            color: #888;
+        }
+        .stat-badge .value {
+            color: #fff;
+            font-weight: 600;
+        }
+        .fruit-desc {
+            color: #bbb;
+            line-height: 1.6;
+            font-size: 0.95em;
+        }
+
+        .scaling-chakra .fruit-name { color: #74b9ff; }
+        .scaling-chakra { border-left-color: #74b9ff; }
+        .scaling-chakra .fruit-icon { background: rgba(116, 185, 255, 0.2); }
+
+        .scaling-strength .fruit-name { color: #ff7675; }
+        .scaling-strength { border-left-color: #ff7675; }
+        .scaling-strength .fruit-icon { background: rgba(255, 118, 117, 0.2); }
+
+        .summary-section {
+            margin: 30px 0;
+            background: rgba(0,0,0,0.3);
+            border-radius: 20px;
+            padding: 30px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .summary-section h2 {
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            color: #feca57;
+            text-align: center;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th {
+            background: rgba(255,255,255,0.1);
+            padding: 12px;
+            text-align: left;
+            color: #feca57;
+            font-weight: 600;
+        }
+        td {
+            padding: 12px;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        tr:hover {
+            background: rgba(255,255,255,0.03);
+        }
+        .tier-tag {
+            display: inline-block;
+            padding: 3px 12px;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 0.9em;
+        }
+        .tag-s { background: #ffd700; color: #1a1a2e; }
+        .tag-a { background: #4ecdc4; color: #1a1a2e; }
+        .tag-b { background: #95e1d3; color: #1a1a2e; }
+        .tag-c { background: #f38181; color: #fff; }
+
+        .chakra-tag { color: #74b9ff; font-weight: 600; }
+        .strength-tag { color: #ff7675; font-weight: 600; }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: #666;
+            font-size: 0.9em;
+            margin-top: 40px;
+        }
+
+        @media (max-width: 600px) {
+            header h1 { font-size: 1.8em; }
+            .tier-header { font-size: 1.3em; }
+            .fruit-name { font-size: 1.1em; }
+            th, td { padding: 8px; font-size: 0.9em; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🍎 Anime Fighting Simulator</h1>
+            <p class="subtitle">Fruits Tier List 2026</p>
+            <p class="last-updated">📅 Última actualización: 2026-07-03</p>
+        </header>
+
+        <div class="summary-section">
+            <h2>📊 Resumen Rápido</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Fruta</th>
+                        <th>Tier</th>
+                        <th>Escala con</th>
+                        <th>Descripción</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Light</strong></td>
+                        <td><span class="tier-tag tag-s">S</span></td>
+                        <td><span class="chakra-tag">Chakra</span></td>
+                        <td>Teletransporte y rayos rápidos, actualmente bufeada</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Flame</strong></td>
+                        <td><span class="tier-tag tag-s">S</span></td>
+                        <td><span class="chakra-tag">Chakra</span></td>
+                        <td>Bolas de fuego, daño constante</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Sand</strong></td>
+                        <td><span class="tier-tag tag-s">S</span></td>
+                        <td><span class="chakra-tag">Chakra</span></td>
+                        <td>Buenos combos, ataque a distancia</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Magma</strong></td>
+                        <td><span class="tier-tag tag-a">A</span></td>
+                        <td><span class="chakra-tag">Chakra</span></td>
+                        <td>Buen daño, excelente para farmear</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Ice</strong></td>
+                        <td><span class="tier-tag tag-a">A</span></td>
+                        <td><span class="chakra-tag">Chakra</span></td>
+                        <td>Daño constante con congelación</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Quake</strong></td>
+                        <td><span class="tier-tag tag-b">B</span></td>
+                        <td><span class="strength-tag">Fuerza</span></td>
+                        <td>Poco alcance, la única habilidad buena es la V (de chakra)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Rubber</strong></td>
+                        <td><span class="tier-tag tag-c">C</span></td>
+                        <td><span class="strength-tag">Fuerza</span></td>
+                        <td>Fruta común, poco alcance, buena para principiantes</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Chop</strong></td>
+                        <td><span class="tier-tag tag-c">C</span></td>
+                        <td><span class="strength-tag">Fuerza</span></td>
+                        <td>La fruta más común del juego</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="tier-section tier-s">
+            <div class="tier-header">
+                <div class="tier-badge">S</div>
+                <span>Tier S — Las Mejores Frutas</span>
+            </div>
+            <div class="tier-content">
+                <div class="fruit-card scaling-chakra">
+                    <div class="fruit-name">
+                        <div class="fruit-icon">⚡</div>
+                        Light
+                    </div>
+                    <div class="fruit-stats">
+                        <div class="stat-badge"><span class="label">Escala:</span> <span class="value">Chakra</span></div>
+                        <div class="stat-badge"><span class="label">Tier:</span> <span class="value">S</span></div>
+                        <div class="stat-badge"><span class="label">Movilidad:</span> <span class="value">★★★★★</span></div>
+                    </div>
+                    <div class="fruit-desc">
+                        Teletransporte y rayos rápidos. Actualmente bufeada, es la mejor fruta del juego gracias a su velocidad y versatilidad.
+                    </div>
+                </div>
+                <div class="fruit-card scaling-chakra">
+                    <div class="fruit-name">
+                        <div class="fruit-icon">🔥</div>
+                        Flame
+                    </div>
+                    <div class="fruit-stats">
+                        <div class="stat-badge"><span class="label">Escala:</span> <span class="value">Chakra</span></div>
+                        <div class="stat-badge"><span class="label">Tier:</span> <span class="value">S</span></div>
+                        <div class="stat-badge"><span class="label">Daño:</span> <span class="value">★★★★★</span></div>
+                    </div>
+                    <div class="fruit-desc">
+                        Bolas de fuego, daño constante. Excelente para eliminar enemigos rápidamente con ataques sostenidos.
+                    </div>
+                </div>
+                <div class="fruit-card scaling-chakra">
+                    <div class="fruit-name">
+                        <div class="fruit-icon">🏜️</div>
+                        Sand
+                    </div>
+                    <div class="fruit-stats">
+                        <div class="stat-badge"><span class="label">Escala:</span> <span class="value">Chakra</span></div>
+                        <div class="stat-badge"><span class="label">Tier:</span> <span class="value">S</span></div>
+                        <div class="stat-badge"><span class="label">Rango:</span> <span class="value">★★★★★</span></div>
+                    </div>
+                    <div class="fruit-desc">
+                        Buenos combos, ataque a distancia. Permite mantener a los enemigos lejos mientras infliges daño constante.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="tier-section tier-a">
+            <div class="tier-header">
+                <div class="tier-badge">A</div>
+                <span>Tier A — Frutas Fuertes</span>
+            </div>
+            <div class="tier-content">
+                <div class="fruit-card scaling-chakra">
+                    <div class="fruit-name">
+                        <div class="fruit-icon">🌋</div>
+                        Magma
+                    </div>
+                    <div class="fruit-stats">
+                        <div class="stat-badge"><span class="label">Escala:</span> <span class="value">Chakra</span></div>
+                        <div class="stat-badge"><span class="label">Tier:</span> <span class="value">A</span></div>
+                        <div class="stat-badge"><span class="label">Farmeo:</span> <span class="value">★★★★★</span></div>
+                    </div>
+                    <div class="fruit-desc">
+                        Buen daño, excelente para farmear. Ideal para jugadores que quieren maximizar su eficiencia recolectando recursos.
+                    </div>
+                </div>
+                <div class="fruit-card scaling-chakra">
+                    <div class="fruit-name">
+                        <div class="fruit-icon">❄️</div>
+                        Ice
+                    </div>
+                    <div class="fruit-stats">
+                        <div class="stat-badge"><span class="label">Escala:</span> <span class="value">Chakra</span></div>
+                        <div class="stat-badge"><span class="label">Tier:</span> <span class="value">A</span></div>
+                        <div class="stat-badge"><span class="label">Control:</span> <span class="value">★★★★☆</span></div>
+                    </div>
+                    <div class="fruit-desc">
+                        Daño constante con congelación. Muy confiable para controlar el campo de batalla y ralentizar enemigos.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="tier-section tier-b">
+            <div class="tier-header">
+                <div class="tier-badge">B</div>
+                <span>Tier B — Opciones Servibles</span>
+            </div>
+            <div class="tier-content">
+                <div class="fruit-card scaling-strength">
+                    <div class="fruit-name">
+                        <div class="fruit-icon">💥</div>
+                        Quake
+                    </div>
+                    <div class="fruit-stats">
+                        <div class="stat-badge"><span class="label">Escala:</span> <span class="value">Fuerza</span></div>
+                        <div class="stat-badge"><span class="label">Tier:</span> <span class="value">B</span></div>
+                        <div class="stat-badge"><span class="label">Alcance:</span> <span class="value">★★☆☆☆</span></div>
+                    </div>
+                    <div class="fruit-desc">
+                        Esta fruta tiene poco alcance. La única habilidad buena es la V (de chakra). Úsala con precaución y enfócate en maximizar esa habilidad.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="tier-section tier-c">
+            <div class="tier-header">
+                <div class="tier-badge">C</div>
+                <span>Tier C — Frutas Comunes</span>
+            </div>
+            <div class="tier-content">
+                <div class="fruit-card scaling-strength">
+                    <div class="fruit-name">
+                        <div class="fruit-icon">🦘</div>
+                        Rubber
+                    </div>
+                    <div class="fruit-stats">
+                        <div class="stat-badge"><span class="label">Escala:</span> <span class="value">Fuerza</span></div>
+                        <div class="stat-badge"><span class="label">Tier:</span> <span class="value">C</span></div>
+                        <div class="stat-badge"><span class="label">Dificultad:</span> <span class="value">Fácil</span></div>
+                    </div>
+                    <div class="fruit-desc">
+                        Fruta común, poco alcance, buena para principiantes. Útil para aprender las mecánicas del juego antes de conseguir algo mejor.
+                    </div>
+                </div>
+                <div class="fruit-card scaling-strength">
+                    <div class="fruit-name">
+                        <div class="fruit-icon">✂️</div>
+                        Chop
+                    </div>
+                    <div class="fruit-stats">
+                        <div class="stat-badge"><span class="label">Escala:</span> <span class="value">Fuerza</span></div>
+                        <div class="stat-badge"><span class="label">Tier:</span> <span class="value">C</span></div>
+                        <div class="stat-badge"><span class="label">Rareza:</span> <span class="value">Muy Común</span></div>
+                    </div>
+                    <div class="fruit-desc">
+                        La fruta más común del juego. Reemplázala tan pronto como puedas por cualquier fruta de tier superior.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>📄 Anime Fighting Simulator Wiki 2026, creado por Akai.</p>
+        </footer>
+    </div>
+</body>
+</html>
