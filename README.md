@@ -1,2 +1,2 @@
-# tilerlist-afs-2026
+# index.html
 Anime Fighting Simulator Tier List 2026
